@@ -57,6 +57,10 @@ public class SourceAttachment extends AbstractTermAttachment {
         }
 
         final String fileName = ImploderAttachment.getFilename(term);
+        if(fileName == null) {
+            return null;
+        }
+
         return resourceService.resolve(fileName);
     }
 
