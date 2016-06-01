@@ -70,11 +70,13 @@ public class ShellFacetFromESV {
         return termContent;
     }
 
-    private static @Nullable String commandPrefix(IStrategoAppl term) {
-        return ESVReader.getProperty(term, "CommandPrefix");
+    private static String commandPrefix(IStrategoAppl term) {
+        // Default is ":"
+        return ESVReader.getProperty(term, "CommandPrefix", ":");
     }
 
-    private static @Nullable String evaluationMethod(IStrategoAppl term) {
-        return ESVReader.getProperty(term, "EvaluationMethod");
+    private static String evaluationMethod(IStrategoAppl term) {
+        // Default is "dynsem"
+        return ESVReader.getProperty(term, "EvaluationMethod", "dynsem");
     }
 }
