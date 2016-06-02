@@ -24,7 +24,8 @@ public class ShellFacetFromESV {
         Map<String, ReplCommandDefinition> commands = commandDefinitions(shellTerm);
         String commandPrefix = commandPrefix(shellTerm);
         String evaluationMethod = evaluationMethod(shellTerm);
-        return new ShellFacet(commands, commandPrefix, evaluationMethod);
+        String shellStartSymbol = shellStartSymbol(shellTerm);
+        return new ShellFacet(commands, commandPrefix, evaluationMethod, shellStartSymbol);
     }
 
     private static Map<String, ReplCommandDefinition> commandDefinitions(IStrategoAppl shellTerm) {
@@ -78,5 +79,10 @@ public class ShellFacetFromESV {
     private static String evaluationMethod(IStrategoAppl term) {
         // Default is "dynsem"
         return ESVReader.getProperty(term, "EvaluationMethod", "dynsem");
+    }
+
+    private static String shellStartSymbol(IStrategoAppl term) {
+        // Default is "Shell"
+        return ESVReader.getProperty(term, "ShellStartSymbol", "Shell");
     }
 }

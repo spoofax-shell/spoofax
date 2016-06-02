@@ -13,12 +13,14 @@ public class ShellFacet implements IFacet {
     private final Map<String, ReplCommandDefinition> commandNameToDefinition;
     private final String commandPrefix;
     private final String evaluationMethod;
+    private final String shellStartSymbol;
 
     public ShellFacet(Map<String, ReplCommandDefinition> commands, @Nullable String commandPrefix,
-                      @Nullable String evaluationMethod) {
+                      @Nullable String evaluationMethod, String shellStartSymbol) {
         this.commandNameToDefinition = commands;
         this.commandPrefix = commandPrefix;
         this.evaluationMethod = evaluationMethod;
+        this.shellStartSymbol = shellStartSymbol;
     }
 
     /**
@@ -42,10 +44,18 @@ public class ShellFacet implements IFacet {
         return evaluationMethod;
     }
 
+    /**
+     * @return The start symbol for shell-specific language syntax.
+     */
+    public String getShellStartSymbol() {
+        return shellStartSymbol;
+    }
+
     @Override
     public String toString() {
         return "ShellFacet [commandNameToDefinition=" + commandNameToDefinition + ", commandPrefix="
-               + commandPrefix + ", evaluationMethod=" + evaluationMethod + "]";
+               + commandPrefix + ", evaluationMethod=" + evaluationMethod + ", shellStartSymbol="
+               + shellStartSymbol + "]";
     }
 
 }
